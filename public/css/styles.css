@@ -1,0 +1,34 @@
+:root {
+    --main-bg-color: #404143;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    color: white;
+}
+
+body {
+ background-color: var(--main-bg-color);
+}
+
+
+/* ====== LOGIN ====== */
+
+.login-form {
+    width: 75%;
+    min-width: 300px;
+}
+
+.login-form__input {
+    width: 100%;
+}
+
+.login-form__a {
+    text-decoration: none;
+}
+
+.login-form__a:hover {
+    text-decoration: underline;
+}
