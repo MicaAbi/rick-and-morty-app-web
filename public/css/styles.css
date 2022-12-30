@@ -1,5 +1,5 @@
 :root {
-    --main-bg-color: #404143;
+    --main-bg-color: #404143; 
 }
 
 * {
@@ -17,8 +17,9 @@ body {
 /* ====== LOGIN ====== */
 
 .login-form {
-    width: 75%;
+    width: 70%;
     min-width: 300px;
+    background-color: #212529;
 }
 
 .login-form__input {
@@ -31,4 +32,53 @@ body {
 
 .login-form__a:hover {
     text-decoration: underline;
+}
+
+.form-label {
+    color: #0d6efd;
+}
+
+
+/* ====== REGISTER ====== */
+
+.register-form {
+    width: 70%;
+    min-width: 300px;
+    background-color: #212529;
+    justify-content: center;
+}
+
+.register-form__h2 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.register-form__input {
+    width: 100%;
+}
+
+.register-form__a {
+    text-decoration: none;
+}
+
+.register-form__a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+/* ********** MEDIA QUERIES PANTALLA MD ********** */
+
+@media (min-width:768px) {
+
+    /* ====== REGISTER ====== */
+    .register-form {
+        justify-content: space-between;
+    }
+
+    .register-form__div--half {
+        width: 48%;
+    }
 }
