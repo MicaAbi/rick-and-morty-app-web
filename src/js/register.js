@@ -1,5 +1,5 @@
-// URL API
-const auth_api_user_post = 'https://api-auth-moby.herokuapp.com/api/user/register'
+// ENDPIONT REGISTER - AUTH API
+const auth_api_user_register = 'https://api-auth-moby.herokuapp.com/api/user/register'
 
 const validations = {
     fullName: {
@@ -135,7 +135,7 @@ passwordRepeatForm.addEventListener('focusout', passwordRepValidation)
 
 const createUser = async (user) => {
     try {
-        const res = await fetch(auth_api_user_post, {
+        const res = await fetch(auth_api_user_register, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",

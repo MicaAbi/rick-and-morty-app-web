@@ -26,12 +26,13 @@
     <main>
         <div class="container-xl d-flex px-5 justify-content-evenly flex-wrap">
 
-            <div class="col-7 col-sm-4 col-lg-6 mb-4">
+            <div class="col-7 col-sm-4 col-lg-6 mb-3">
                 <img class="img-fluid" src="../../public/images/rym-login.png" alt="rick and morty portal">
             </div>
 
             <div class="col-10 col-lg-6 mb-4 d-flex align-items-center justify-content-center">
                 <form class="login-form p-4 rounded-2">
+                    <div class="error-form col-12" id="error-field"></div>
                     <div class="mb-3">
                         <label for="email-input" class="form-label">Email address</label>
                         <input type="email" class="login-form__input form-control" id="email-input" placeholder="email@example.com">
