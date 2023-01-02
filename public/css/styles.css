@@ -15,6 +15,11 @@ body {
     background-color: var(--main-bg-color);
 }
 
+.logo {
+    width: 12vw;
+    min-width: 120px;
+}
+
 
 
 /* ====== LOGIN ====== */
@@ -87,6 +92,48 @@ body {
     font-weight: bold;
 }
 
+/* ====== INDEX ====== */
+
+.content-wrapper {
+    width: 85%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+.navigation-location {
+    width: 100%;
+    background-color: var(--secondary-bg-color);
+    border-radius: 5px;
+    padding: 0.8rem;
+}
+
+.navigation-location__span {
+    color: var(--bs-secondary-text);
+}
+
+.form-search {
+    width: 100%;
+}
+
+.form-search__input {
+    width: 40%;
+    background-color: var(--secondary-bg-color);
+    border: 0px;
+    border-radius: 5px;
+    padding: 0.8rem;
+}
+
+.cards-container {
+    width: 100%;
+}
+
+.card {
+    width: 15vw;
+    min-width: 140px;
+    background-color: var(--bs-secondary-text);
+}
 
 /* ====== FOOTER ====== */
 

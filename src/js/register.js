@@ -1,4 +1,4 @@
-// ENDPIONT REGISTER - AUTH API
+// ENDPOINT REGISTER - AUTH API
 const auth_api_user_register = 'https://api-auth-moby.herokuapp.com/api/user/register'
 
 const validations = {

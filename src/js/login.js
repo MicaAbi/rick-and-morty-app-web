@@ -1,6 +1,4 @@
-console.log('Welcome to the login section');
-
-// ENDPIONT LOGIN - AUTH API
+// ENDPOINT LOGIN - AUTH API
 const auth_api_user_login = 'https://api-auth-moby.herokuapp.com/api/user/login'
 
 const validations = {

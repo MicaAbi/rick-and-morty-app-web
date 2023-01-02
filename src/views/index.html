@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../public/css/styles.css">
     <title>Rick & Morty</title>
 </head>
 
@@ -14,9 +15,9 @@
 
     <!-- HEADER -->
     <header>
-        <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Rick & Morty</a>
+        <nav class="navbar navbar-expand-lg bg-dark p-0" data-bs-theme="dark">
+            <div class="container-fluid px-4">
+                <a class="navbar-brand me-5" href="#"><img src="../../public/images/rym_logo.png" class="logo" alt="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -24,19 +25,35 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="#">Characters</a>
-                        <a class="nav-link" href="#">Episodes</a>
-                        <a class="nav-link" href="#">Locations</a>
-                        <a class="nav-link disabled">Profile</a>
+                        <a class="nav-link mx-2 active" aria-current="page" href="#">Characters</a>
+                        <a class="nav-link mx-2" href="#">Episodes</a>
+                        <a class="nav-link mx-2" href="#">Locations</a>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="d-flex">
+        <div class="content-wrapper d-flex flex-wrap gap-4">
+            <section class="navigation-location">
+                <span class="text-primary">Home</span><span class="navigation-location__span"> / Characters</span>
+            </section>
+            <form class="form-search d-flex flex-wrap">
+                <input type="text" placeholder="Search..." class="form-search__input me-4" id="search">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <section class="cards-container d-flex flex-wrap justify-content-between row-gap-4">
+                <h5 class="cards-container__load col-12">Load characters...</h5>
+            </section>
+        </div>
+    </main>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
+    <script src="../js/index.js"></script>
 </body>
 
 </html>
