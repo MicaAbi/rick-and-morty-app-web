@@ -135,6 +135,35 @@ body {
     background-color: var(--bs-secondary-text);
 }
 
+/* ====== CHARACTER DETAIL ====== */
+
+.character-container {
+    width: 100%;
+}
+
+.character-container__detail {
+    padding: 1.5rem;
+    border-radius: 5px;
+    width: 100%;
+    background-color: var(--secondary-bg-color);
+}
+
+.character-container__episodes {
+    padding: 1.5rem;
+    border-radius: 5px;
+    width: 100%;
+    background-color: var(--secondary-bg-color);
+}
+
+.card-img-top {
+    max-width: 300px;
+}
+
+.character-container__info {
+    margin: 0;
+}
+
+
 /* ====== FOOTER ====== */
 
 footer {
@@ -167,5 +196,15 @@ footer {
 
     .register-form__div--half {
         width: 48%;
+    }
+
+    /* ====== CHARACTER DETAIL ====== */
+
+    .character-container__detail {
+        width: 29%;
+    }
+
+    .character-container__episodes {
+        width: 69%;
     }
 }
