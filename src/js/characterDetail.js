@@ -1,7 +1,7 @@
 // Endpoint episodes
 const rym_api_episode = (list) => `https://rickandmortyapi.com/api/episode/${list}`
 
-// Character detail
+// Character Data
 const getCharacterData = () => {
     const characterData = localStorage.getItem('characterDetail')
     const character = JSON.parse(characterData)
@@ -13,18 +13,18 @@ const character = getCharacterData()
 
 // LIST EPISODES
 
-const getEpisodeNumbers = (character) => {
+const getEpisodeID = (character) => {
     const episodes = character.episode
 
     let lastSlash = episodes[0].lastIndexOf('/')
-    let episodeList = []
+    let episodeIdList = []
 
     episodes.forEach(episode => {
-        const episodeNumber = parseInt(episode.slice(lastSlash + 1))
-        episodeList.push(episodeNumber)
+        const episodeID = parseInt(episode.slice(lastSlash + 1))
+        episodeIdList.push(episodeID)
     })
 
-    return episodeList
+    return episodeIdList
 }
 
 const getEpisodesData = async (list) => {
@@ -38,10 +38,10 @@ const episodesListContainer = document.querySelector('.item-container__links-lis
 
 const listEpisodes = async (character) => {
 
-    const episodeList = getEpisodeNumbers(character)
-    const episodesData = await getEpisodesData(episodeList)
+    const episodeIdList = getEpisodeID(character)
+    const episodesData = await getEpisodesData(episodeIdList)
 
-    const episodesName = []
+    const episodesList = []
 
     if (Array.isArray(episodesData)) {
         episodesData.forEach(episode => {
@@ -57,7 +57,7 @@ const listEpisodes = async (character) => {
                 loadDetail(episode)
             })
 
-            episodesName.push(episodeLink)
+            episodesList.push(episodeLink)
         })
     } else {
         let { id, name } = episodesData
@@ -70,10 +70,10 @@ const listEpisodes = async (character) => {
             e.preventDefault()
             loadDetail(episodesData)
         })
-        episodesName.push(episodeLink)
+        episodesList.push(episodeLink)
     }
 
-    episodesListContainer.append(...episodesName)
+    episodesListContainer.append(...episodesList)
 }
 
 listEpisodes(character)
