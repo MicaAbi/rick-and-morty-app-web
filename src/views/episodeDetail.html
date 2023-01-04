@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="../../public/css/styles.css">
-    <title>Character</title>
+    <title>Episode</title>
 </head>
 <body>
     
@@ -23,8 +23,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link mx-2 active" aria-current="page" href="./index.html">Characters</a>
-                        <a class="nav-link mx-2" href="./episodes.html">Episodes</a>
+                        <a class="nav-link mx-2"  href="./index.html">Characters</a>
+                        <a class="nav-link mx-2 active" aria-current="page" href="./episodes.html">Episodes</a>
                         <a class="nav-link mx-2" href="./locations.html">Locations</a>
                     </div>
                 </div>
@@ -38,27 +38,22 @@
             <section class="navigation-location">
                 <span class="text-primary">Home</span>
                 <span class="navigation-location__span"> / </span>
-                <span class="text-primary"></span><a href="./index.html">Characters</a></span>
+                <span class="text-primary"></span><a href="./episodes.html">Episodes</a></span>
                 <span class="navigation-location__span navigation-name-item"> / </span>
             </section>
             <section class="item-container d-flex flex-wrap justify-content-between row-gap-4">
                 <div class="item-container__detail">
-                    <img src="" alt="" class="card-img-top rounded-1">
                     <div class="detail-text p-3 h-0">
-                        <h5 class="detail-title">Character Info</h5>
+                        <h5 class="detail-title">Info of the episode</h5>
                         <hr>
-                        <p class="item-container__info text-secondary character-name">Name: </p>  
-                        <p class="item-container__info text-secondary character-status">Status: </p>  
-                        <p class="item-container__info text-secondary character-species">Species: </p>  
-                        <p class="item-container__info text-secondary character-gender">Gender: </p>  
-                        <p class="item-container__info text-secondary">Origin: <a class="character-origin" href=""></a></p>  
-                        <p class="item-container__info text-secondary">Location: <a class="character-location" href=""></a></p>  
+                        <p class="item-container__info text-secondary episode-name">Name: </p>  
+                        <p class="item-container__info text-secondary episode-date">Air date: </p>  
+                        <p class="item-container__info text-secondary episode-code">Episode code: </p>
                     </div>
                 </div>
                 <div class="item-container__list">
-                    <div class="item-container__links-list p-3">
-                        <h4>List of Episodes appearances</h4>
-                        <hr>
+                    <div class="detail-text p-3">
+                        <h4>Characters in this episode</h4>
                     </div>
                 </div>
             </section>
@@ -76,7 +71,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
-    <script src="../js/characterDetail.js"></script>
+    <script src="../js/episodeDetail.js"></script>
 
 </body>
 </html>

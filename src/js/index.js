@@ -1,53 +1,58 @@
-console.log('Welcome to the characters section');
+console.log('Welcome to the collection section');
 
 // ENDPOINTS RICK&MORTY API
-const rym_api_base = 'https://rickandmortyapi.com/api'
-const rym_api_characters = `${rym_api_base}/character/?page=`
-const rym_api_single_character = (id) => {
-    return `${rym_api_base}/character/${id}`
+
+const rym_api_collections = (section, page) => {
+    return `https://rickandmortyapi.com/api/${section}/?page=${page}`
+}
+const rym_api_single = (section, id) => {
+    return `https://rickandmortyapi.com/api/${section}/${id}`
 }
 
 // FETCH FUNCTIONS
 
-// Get all characters
-const getAllCharacters = async (page) => {
+// Get all characters, episodes or locations
+const getCollection = async (section, page) => {
     try {
-        const res = await fetch(`${rym_api_characters}${page}`)
+        const endpoint = rym_api_collections(section, page)
+        const res = await fetch(endpoint)
         const data = await res.json()
         return data
     } catch (error) {
         console.log(error);
-    } finally {
-        console.log(`${rym_api_characters}${page}`);
     }
 }
 
+
 // CARD CREATION
 
-const createCharacterCard = (character) => {
+const createCard = (collectionItem) => {
     const card = document.createElement('div')
     card.classList.add('card')
 
-    const characterImg = document.createElement('img')
-    characterImg.classList.add('card-img-top')
-    characterImg.src = character.image
-    characterImg.alt = character.name
+    if(singularSection === 'character') {
+        const characterImg = document.createElement('img')
+        characterImg.classList.add('card-img-top')
+        characterImg.src = collectionItem.image
+        characterImg.alt = collectionItem.name
+        card.append(characterImg)
+    }
 
     const link = document.createElement('a')
     link.style.cursor ='pointer'
-    link.dataset.id = character.id
+    link.dataset.id = collectionItem.id
     const cardBody = document.createElement('div')
     cardBody.classList.add('card-body')
-    const characterTitle = document.createElement('h6')
-    characterTitle.textContent = character.name
+    const cardTitle = document.createElement('h6')
+    cardTitle.textContent = collectionItem.name
 
-    cardBody.appendChild(characterTitle)
-    link.appendChild(cardBody)
-    card.append(characterImg, link)
+    card.append(link)
+    link.append(cardBody)
+    cardBody.append(cardTitle)
 
     link.addEventListener('click', (e) => {
         e.preventDefault();
-        loadCharacterDetail(link.dataset.id)
+        loadDetail(singularSection, link.dataset.id)
     })
 
     return card
@@ -58,7 +63,7 @@ const createCharacterCard = (character) => {
 const paginate = (info, page) => {
     const navPag = document.createElement('nav')
     navPag.classList.add('col-12')
-    navPag.ariaLabel = 'character pagination'
+    navPag.ariaLabel = 'pagination'
     
     const ul = document.createElement('ul')
     ul.classList.add('pagination')
@@ -80,8 +85,8 @@ const paginate = (info, page) => {
         prevLink.href = info.prev
     }
     
-    previousLi.append(prevLink)
     ul.append(previousLi)
+    previousLi.append(prevLink)
 
     // page number
     for(let i = 1; i <= info.pages ; i++) {
@@ -99,12 +104,12 @@ const paginate = (info, page) => {
             numberLi.classList.add('active')
         }
 
+        ul.append(numberLi)
+
         numberLi.addEventListener('click', (e) => {
             e.preventDefault();
-            loadCharacters(linkNumPage.dataset.pageNumber)
+            loadCards(singularSection, i)
         })
-
-        ul.append(numberLi)
     }
 
     // next page
@@ -131,25 +136,24 @@ const paginate = (info, page) => {
     return navPag
 }
 
-// LOAD CHARACTERS
+// LOAD INFORMATION CARDS
 
 const cardsContainer = document.querySelector('.cards-container')
 const loadText = document.querySelector('.cards-container__load')
+const sectionActive = document.querySelector('.active').text
+const singularSection = sectionActive.slice(0, -1).toLowerCase()
 
-const loadCharacters = async (page = 1) => {
+const loadCards = async (section, page = 1) => {
     cardsContainer.textContent = ''
+    const dataCollection = await getCollection(section, page)
+    const {info, results} = dataCollection
     
-    const dataCharacters = await getAllCharacters(page)
-    const {info, results} = dataCharacters
-
-    console.log(results);
-
     let cardBox = []
 
-    results.forEach(character => {
-        const card = createCharacterCard(character)
+    results.forEach(collectionItem => {
+        const card = createCard(collectionItem)
         cardBox.push(card)
-    });
+    })
 
     if(cardBox.length > 0) {
         loadText.textContent = ''
@@ -160,15 +164,20 @@ const loadCharacters = async (page = 1) => {
     cardsContainer.append(pager)
 }
 
-loadCharacters()
+loadCards(singularSection, 1)
 
 
-// LOAD CHARACTER DETAIL
+// LOAD DETAIL
 
-const loadCharacterDetail = async (id) => {
-    const res = await fetch(rym_api_single_character(id))
-    const data = await res.json()
+const loadDetail = async (section, id) => {
+    try {
+        const endpoint = rym_api_single(section, id)
+        const res = await fetch(endpoint)
+        const dataSingle = await res.json()
 
-    localStorage.setItem('characterDetail', JSON.stringify(data))
-    window.location = '../views/characterDetail.html'
+        localStorage.setItem(`${singularSection}Detail`, JSON.stringify(dataSingle))
+        window.location = `../views/${singularSection}Detail.html`
+    } catch (error) {
+        console.log(error);
+    }
 }
