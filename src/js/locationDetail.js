@@ -1,22 +1,20 @@
-console.log('Welcome to episode detail');
-
 // Endpoint characters
 const rym_api_character = (list) => `https://rickandmortyapi.com/api/character/${list}`
 
-// Episode Data
-const getEpisodeData = () => {
-    const episodeData = localStorage.getItem('episodeDetail')
-    const episode = JSON.parse(episodeData)
+// Location Data
+const getLocationData = () => {
+    let locationData = localStorage.getItem('locationDetail')
+    let location = JSON.parse(locationData)
 
-    return episode
+    return location
 }
 
-const episode = getEpisodeData()
+const place = getLocationData()
 
 // LIST CHARACTERS
 
-const getCharacterID = (episode) => {
-    const characters = episode.characters
+const getCharacterID = (location) => {
+    const characters = location.residents
 
     let lastSlash = characters[0].lastIndexOf('/')
     let charactersIdList = []
@@ -38,9 +36,9 @@ const getCharactersData = async (list) => {
 
 const charactersListContainer = document.querySelector('.item-container__links-list')
 
-const listCharacters = async (episode) => {
+const listCharacters = async (location) => {
 
-    const characterIdList = getCharacterID(episode)
+    const characterIdList = getCharacterID(location)
     const charactersData = await getCharactersData(characterIdList)
 
     const charactersName = []
@@ -64,23 +62,30 @@ const listCharacters = async (episode) => {
     charactersListContainer.append(...charactersName)
 }
 
-listCharacters(episode)
+if(place.residents.length > 0) {
+    listCharacters(place)
+} else {
+    const noResidents = document.createElement('p')
+    noResidents.textContent = 'No registered residents'
+    charactersListContainer.append(noResidents)
+}
+
+console.log(`Cantidad de residentes: ${place.residents.length}`);
+console.log(place.residents);
 
 // SHOW INFORMATION
 
 const pageTitle = document.querySelector('title')
 const navigation = document.querySelector('.navigation-name-item')
-const episodeName = document.querySelector('.episode-name')
-const episodeNumber = document.querySelector('.episode-number')
-const episodeDate = document.querySelector('.episode-date')
-const episodeCode = document.querySelector('.episode-code')
+const locationName = document.querySelector('.location-name')
+const locationType = document.querySelector('.location-type')
+const locationDimension = document.querySelector('.location-dimension')
 
-pageTitle.innerText += ` ${episode.id}`
-navigation.textContent += episode.name
-episodeName.textContent += episode.name
-episodeNumber.textContent += episode.id
-episodeDate.textContent += episode.air_date
-episodeCode.textContent += episode.episode
+pageTitle.innerText += ` ${place.name}`
+navigation.textContent += place.name
+locationName.textContent += place.name
+locationType.textContent += place.type
+locationDimension.textContent += place.dimension
 
 // LOAD DETAIL
 

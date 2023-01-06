@@ -15,6 +15,11 @@ body {
     background-color: var(--main-bg-color);
 }
 
+::selection {
+    background-color: aquamarine;
+    color: #0d6efd;
+}
+
 .logo {
     width: 12vw;
     min-width: 120px;
@@ -229,10 +234,25 @@ footer {
     /* ====== ITEM DETAIL ====== */
 
     .item-container__detail {
-        width: 29%;
+        width: 25%;
     }
 
     .item-container__list {
-        width: 69%;
+        width: 73%;
+    }
+
+    /* ====== INDEX ====== */
+
+    .card {
+        width: 18.5vw;
+    }
+}
+
+@media (min-width:992px) {
+
+    /* ====== INDEX ====== */
+
+    .card {
+        width: 15vw;
     }
 }
