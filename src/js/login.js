@@ -2,7 +2,7 @@
 const userLogged = localStorage.getItem('userLogged')
 
 if(userLogged) {
-    window.location = `../views/index.html`
+    window.location = `./index.html`
 }
 
 // ENDPOINT LOGIN - AUTH API
@@ -98,7 +98,7 @@ const loginUser = async (user) => {
             const { token } = dataUser
             localStorage.setItem('userLogged', JSON.stringify(token))
             loginForm.reset()
-            window.location = '../views/index.html'
+            window.location = './index.html'
         } else {
             loginError.textContent = 'Incorrect user or password'
         }
