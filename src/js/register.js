@@ -2,7 +2,7 @@
 const userLogged = localStorage.getItem('userLogged')
 
 if(userLogged) {
-    window.location = `../index.html`
+    window.location = `./index.html`
 }
 
 // ENDPOINT REGISTER - AUTH API
@@ -157,7 +157,7 @@ const createUser = async (user) => {
 
         resultCode == 0 ? (
             registerForm.reset(),
-            window.location = './src/views/login.html'
+            window.location = './login.html'
         ) : (
             errorRegister.textContent = header.error
         )

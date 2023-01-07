@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../public/css/styles.css">
-    <title>Episode</title>
+    <link rel="stylesheet" href="./public/css/styles.css">
+    <title>Location</title>
 </head>
 <body>
     
@@ -15,7 +15,7 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-dark p-0" data-bs-theme="dark">
             <div class="container-fluid px-4">
-                <a class="navbar-brand me-5" href="../../index.html"><img src="../../public/images/rym_logo.png" class="logo" alt="logo"></a>
+                <a class="navbar-brand me-5" href="./index.html"><img src="./public/images/rym_logo.png" class="logo" alt="logo"></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -23,9 +23,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link mx-2"  href="../../index.html">Characters</a>
-                        <a class="nav-link mx-2 active" aria-current="page" href="./episodes.html">Episodes</a>
-                        <a class="nav-link mx-2" href="./locations.html">Locations</a>
+                        <a class="nav-link mx-2" href="./index.html">Characters</a>
+                        <a class="nav-link mx-2" href="./episodes.html">Episodes</a>
+                        <a class="nav-link mx-2 active" aria-current="page" href="./locations.html">Locations</a>
                     </div>
                     <div class="navbar-nav">
                         <a class="nav-link mx-2 logout" href="#">Cerrar sesión</a>
@@ -41,23 +41,22 @@
             <section class="navigation-location">
                 <span class="text-primary">Home</span>
                 <span class="navigation-location__span"> / </span>
-                <span class="text-primary"></span><a href="./episodes.html">Episodes</a></span>
+                <span class="text-primary"></span><a href="./locations.html">Locations</a></span>
                 <span class="navigation-location__span navigation-name-item"> / </span>
             </section>
             <section class="item-container d-flex flex-wrap justify-content-between row-gap-4">
                 <div class="item-container__detail">
                     <div class="detail-text p-3">
-                        <h5 class="detail-title">Info of the episode</h5>
+                        <h5 class="detail-title">Info of the location</h5>
                         <hr>
-                        <p class="item-container__info text-secondary episode-name">Name: </p>  
-                        <p class="item-container__info text-secondary episode-number">Episode number: </p>  
-                        <p class="item-container__info text-secondary episode-date">Air date: </p>  
-                        <p class="item-container__info text-secondary episode-code">Episode code: </p>
+                        <p class="item-container__info text-secondary location-name">Name: </p>  
+                        <p class="item-container__info text-secondary location-type">Type: </p>  
+                        <p class="item-container__info text-secondary location-dimension">Dimension: </p>
                     </div>
                 </div>
                 <div class="item-container__list">
                     <div class="item-container__links-list p-3">
-                        <h4>Characters in this episode</h4>
+                        <h4>Residents in this location</h4>
                         <hr>
                     </div>
                 </div>
@@ -76,7 +75,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
-    <script src="../js/episodeDetail.js"></script>
+    <script src="./src/js/locationDetail.js"></script>
 
 </body>
 </html>

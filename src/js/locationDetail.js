@@ -2,7 +2,7 @@
 const userLogged = localStorage.getItem('userLogged')
 
 if(!userLogged) {
-    window.location = `./src/views/login.html`
+    window.location = `./login.html`
 }
 
 // LOG OUT
@@ -10,7 +10,7 @@ const logout = document.querySelector('.logout')
 
 logout.addEventListener('click', (e) => {
     localStorage.removeItem('userLogged')
-    window.location = `./src/views/login.html`
+    window.location = `./login.html`
 })
 
 // Endpoint characters
@@ -117,5 +117,5 @@ locationDimension.textContent += place.dimension
 
 const loadDetail = async (character) => {
     localStorage.setItem('characterDetail', JSON.stringify(character))
-    window.location = '../views/characterDetail.html'
+    window.location = './characterDetail.html'
 }
