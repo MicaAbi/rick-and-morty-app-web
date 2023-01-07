@@ -2,7 +2,7 @@
 const userLogged = localStorage.getItem('userLogged')
 
 if(!userLogged) {
-    window.location = `../views/login.html`
+    window.location = `./src/views/login.html`
 }
 
 // LOG OUT
@@ -10,7 +10,7 @@ const logout = document.querySelector('.logout')
 
 logout.addEventListener('click', (e) => {
     localStorage.removeItem('userLogged')
-    window.location = `../views/login.html`
+    window.location = `./src/views/login.html`
 })
 
 // ENDPOINTS RICK&MORTY API
@@ -238,7 +238,7 @@ const loadDetail = async (section, id) => {
         const dataSingle = await getSingle(section, id)
 
         localStorage.setItem(`${section}Detail`, JSON.stringify(dataSingle))
-        window.location = `../views/${section}Detail.html`
+        window.location = `./src/views/${section}Detail.html`
     } catch (error) {
         console.error(error);
     }
