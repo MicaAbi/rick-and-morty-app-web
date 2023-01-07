@@ -98,7 +98,7 @@ const loginUser = async (user) => {
             const { token } = dataUser
             localStorage.setItem('userLogged', JSON.stringify(token))
             loginForm.reset()
-            window.location = './index.html'
+            window.location = '../../index.html'
         } else {
             loginError.textContent = 'Incorrect user or password'
         }
