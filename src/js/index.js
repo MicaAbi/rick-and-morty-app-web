@@ -238,7 +238,7 @@ const loadDetail = async (section, id) => {
         const dataSingle = await getSingle(section, id)
 
         localStorage.setItem(`${section}Detail`, JSON.stringify(dataSingle))
-        window.location = `../views/${section}Detail.html`
+        window.location = `./src/views/${section}Detail.html`
     } catch (error) {
         console.error(error);
     }
