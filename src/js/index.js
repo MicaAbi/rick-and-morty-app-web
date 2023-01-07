@@ -253,3 +253,5 @@ searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
     loadCards(sectionName, searchInput.value)
 })
+
+console.log(`./${sectionName}Detail.html`);
