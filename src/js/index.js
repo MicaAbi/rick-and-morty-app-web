@@ -1,21 +1,18 @@
 // ENDPOINTS RICK&MORTY API
 
-const rym_api_collections = (section, page) => {
-    return `https://rickandmortyapi.com/api/${section}/?page=${page}`
+const rym_api_collections = (section, name, page) => {
+    return `https://rickandmortyapi.com/api/${section}/?page=${page}&name=${name}`
 }
 const rym_api_single = (section, id) => {
     return `https://rickandmortyapi.com/api/${section}/${id}`
-}
-const rym_api_search = (section, name) => {
-    return `https://rickandmortyapi.com/api/${section}/?name=${name}`
 }
 
 // FETCH FUNCTIONS
 
 // Get all characters, episodes or locations
-const getCollection = async (section, page) => {
+const getCollection = async (section, name, page) => {
     try {
-        const endpoint = rym_api_collections(section, page)
+        const endpoint = rym_api_collections(section, name, page)
         const res = await fetch(endpoint)
         const data = await res.json()
         return data
@@ -34,14 +31,6 @@ const getSingle = async (section, id) => {
     } catch (error) {
         console.log(error);
     }
-}
-
-// Get characters, episodes or locations by their names
-const searchByName = async (section, name) => {
-    const res = await fetch(rym_api_search(section, name))
-    const data = await res.json()
-
-    return data;
 }
 
 // CARD CREATION
@@ -155,7 +144,7 @@ const paginate = (info, page) => {
 
         numberLi.addEventListener('click', (e) => {
             e.preventDefault();
-            loadCards(sectionName, i)
+            loadCards(sectionName, searchInput.value, i)
         })
     }
 
@@ -190,25 +179,29 @@ const loadText = document.querySelector('.cards-container__load')
 const sectionActive = document.querySelector('.active').text
 const sectionName = sectionActive.slice(0, -1).toLowerCase()
 
-const loadCards = async (section, page = 1) => {
-    const dataCollection = await getCollection(section, page)
-    const { info, results } = dataCollection
+const loadCards = async (section, name = '', page = 1) => {
+    const dataCollection = await getCollection(section, name, page)
 
-    let cardBox = []
+    if (dataCollection.results) {
+        const { info, results } = dataCollection
+        cardsContainer.textContent = ''
+        
+        name ? loadText.textContent = `${info.count} results of "${name}"` : loadText.textContent = ''
 
-    results.forEach(collectionItem => {
-        const card = createCard(collectionItem)
-        cardBox.push(card)
-    })
+        let cardBox = []
 
-    if (cardBox.length > 0) {
-        loadText.textContent = ''
+        results.forEach(collectionItem => {
+            const card = createCard(collectionItem)
+            cardBox.push(card)
+        })
+
+        cardsContainer.append(...cardBox)
+        const pager = paginate(info, page)
+        cardsContainer.append(pager)
+    } else {
+        loadText.textContent = `${sectionName} not found`
         cardsContainer.textContent = ''
     }
-
-    cardsContainer.append(...cardBox)
-    const pager = paginate(info, page)
-    cardsContainer.append(pager)
 }
 
 loadCards(sectionName)
@@ -232,32 +225,7 @@ const loadDetail = async (section, id) => {
 const searchForm = document.querySelector('.form-search')
 const searchInput = document.querySelector('#search')
 
-const loadSearchResults = async (section, name) => {
-    const searchResult = await searchByName(section, name)
-    console.log(searchResult);
-
-    if (searchResult.results) {
-        const { info, results } = searchResult
-        cardsContainer.textContent = ''
-        loadText.textContent = `${info.count} results`
-
-        let cardBox = []
-
-        results.forEach(itemFound => {
-            const card = createCard(itemFound)
-            cardBox.push(card)
-        })
-
-        cardsContainer.append(...cardBox)
-        const pager = paginate(info)  // NO ESTA FUNCIONANDO EL PAGINADOR: clickeando las siguientes páginas se hace un fetch a las paginas principales de colecciones, sale de la busqueda por nombre.
-        cardsContainer.append(pager)
-    } else {
-        loadText.textContent = `${sectionName} not found`
-        cardsContainer.textContent = ''
-    }
-}
-
-searchForm.addEventListener('submit', async (e) => {
+searchForm.addEventListener('submit', (e) => {
     e.preventDefault()
-    loadSearchResults(sectionName, searchInput.value)
+    loadCards(sectionName, searchInput.value)
 })

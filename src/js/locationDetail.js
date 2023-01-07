@@ -41,37 +41,48 @@ const listCharacters = async (location) => {
     const characterIdList = getCharacterID(location)
     const charactersData = await getCharactersData(characterIdList)
 
-    const charactersName = []
+    if (Array.isArray(charactersData)) {
+        const charactersName = []
 
-    charactersData.forEach(character => {
-        let {name} = character
+        charactersData.forEach(character => {
+            let { name } = character
+            const characterLink = document.createElement('a')
+            characterLink.textContent = name
+            characterLink.style.display = 'block'
+            characterLink.classList.add('text-primary')
+            characterLink.style.cursor = 'pointer'
+
+            characterLink.addEventListener('click', (e) => {
+                e.preventDefault()
+                loadDetail(character)
+            })
+
+            charactersName.push(characterLink)
+        })
+        charactersListContainer.append(...charactersName)
+        
+    } else {
         const characterLink = document.createElement('a')
-        characterLink.textContent = name
+        characterLink.textContent = charactersData.name
         characterLink.style.display = 'block'
         characterLink.classList.add('text-primary')
         characterLink.style.cursor = 'pointer'
-
+        
         characterLink.addEventListener('click', (e) => {
             e.preventDefault()
-            loadDetail(character)
+            loadDetail(charactersData)
         })
-
-        charactersName.push(characterLink)
-    })
-
-    charactersListContainer.append(...charactersName)
+        charactersListContainer.append(characterLink)
+    }
 }
 
-if(place.residents.length > 0) {
+if (place.residents.length > 0) {
     listCharacters(place)
 } else {
     const noResidents = document.createElement('p')
     noResidents.textContent = 'No registered residents'
     charactersListContainer.append(noResidents)
 }
-
-console.log(`Cantidad de residentes: ${place.residents.length}`);
-console.log(place.residents);
 
 // SHOW INFORMATION
 

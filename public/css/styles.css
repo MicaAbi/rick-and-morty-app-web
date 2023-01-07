@@ -13,6 +13,8 @@
 body {
     min-height: 100vh;
     background-color: var(--main-bg-color);
+    position: relative;
+    padding-bottom: 2rem;
 }
 
 ::selection {
@@ -201,8 +203,8 @@ a {
 
 footer {
     width: 100vw;
-    position: fixed;
-    bottom: 0px;
+    position: absolute;
+    bottom: 0;
     background-color: var(--secondary-bg-color);
 }
 
@@ -214,7 +216,6 @@ footer {
 .footer-container span {
     color: var(--bs-secondary-text);
 }
-
 
 
 
