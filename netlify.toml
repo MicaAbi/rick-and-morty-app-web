@@ -1,0 +1,4 @@
+[[redirects]]
+    from = "/"
+    to = "/src/views/index.html"
+    status = 200
