@@ -1,5 +1,21 @@
+// TOKEN VALIDATION
+const userLogged = localStorage.getItem('userLogged')
+
+if(!userLogged) {
+    window.location = `../views/login.html`
+}
+
+// LOG OUT
+const logout = document.querySelector('.logout')
+
+logout.addEventListener('click', (e) => {
+    localStorage.removeItem('userLogged')
+    window.location = `../views/login.html`
+})
+
 // Endpoint episodes
 const rym_api_episode = (list) => `https://rickandmortyapi.com/api/episode/${list}`
+const rym_api_location = (id) => `https://rickandmortyapi.com/api/location/${id}`
 
 // Character Data
 const getCharacterData = () => {
@@ -107,3 +123,45 @@ const loadDetail = async (episode) => {
     localStorage.setItem('episodeDetail', JSON.stringify(episode))
     window.location = '../views/episodeDetail.html'
 }
+
+// REDIRECT TO LOCATION
+
+const loadLocation = async (location) => {
+    localStorage.setItem('locationDetail', JSON.stringify(location))
+    window.location = '../views/locationDetail.html'
+}
+
+
+characterLocation.addEventListener('click', async (e) => {
+    e.preventDefault();
+
+    if(character.location.url) {
+        const urlLocation = character.location.url
+        const lastSlash = urlLocation.lastIndexOf('/')
+        const locationID = parseInt(urlLocation.slice(lastSlash + 1))
+        
+        const res = await fetch(rym_api_location(locationID))
+        const data = await res.json()
+    
+        loadLocation(data)
+    } else {
+        alert('Unknown location!')
+    }
+})
+
+characterOrigin.addEventListener('click', async (e) => {
+    e.preventDefault()
+
+    if(character.origin.url) {
+        const urlOrigin = character.origin.url
+        const lastSlash = urlOrigin.lastIndexOf('/')
+        const originID = parseInt(urlOrigin.slice(lastSlash + 1))
+        
+        const res = await fetch(rym_api_location(originID))
+        const data = await res.json()
+    
+        loadLocation(data)
+    } else {
+        alert('Unknown origin!')
+    }
+})

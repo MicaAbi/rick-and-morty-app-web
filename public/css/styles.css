@@ -105,6 +105,10 @@ a {
 
 /* ====== INDEX ====== */
 
+.logout:hover {
+    color: #0d6efd
+}
+
 .content-wrapper {
     width: 85%;
     margin-right: auto;
@@ -255,5 +259,9 @@ footer {
 
     .card {
         width: 15vw;
+    }
+
+    .navbar-collapse {
+        justify-content: space-between;
     }
 }

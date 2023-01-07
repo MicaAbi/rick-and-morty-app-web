@@ -1,3 +1,18 @@
+// TOKEN VALIDATION
+const userLogged = localStorage.getItem('userLogged')
+
+if(!userLogged) {
+    window.location = `../views/login.html`
+}
+
+// LOG OUT
+const logout = document.querySelector('.logout')
+
+logout.addEventListener('click', (e) => {
+    localStorage.removeItem('userLogged')
+    window.location = `../views/login.html`
+})
+
 // ENDPOINTS RICK&MORTY API
 
 const rym_api_collections = (section, name, page) => {
@@ -17,7 +32,7 @@ const getCollection = async (section, name, page) => {
         const data = await res.json()
         return data
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 
@@ -29,7 +44,7 @@ const getSingle = async (section, id) => {
         const data = await res.json()
         return data
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 
@@ -99,6 +114,7 @@ const paginate = (info, page) => {
     const navPag = document.createElement('nav')
     navPag.classList.add('col-12')
     navPag.classList.add('mt-4')
+    navPag.classList.add('row-gap-2')
     navPag.ariaLabel = 'pagination'
 
     const ul = document.createElement('ul')
@@ -120,6 +136,11 @@ const paginate = (info, page) => {
         previousLi.classList.remove('disable')
         prevLink.href = info.prev
     }
+
+    previousLi.addEventListener('click', (e) => {
+        e.preventDefault()
+        loadCards(sectionName, searchInput.value, page - 1 )
+    })
 
     ul.append(previousLi)
     previousLi.append(prevLink)
@@ -162,11 +183,14 @@ const paginate = (info, page) => {
         nextLi.classList.remove('disable')
     }
 
-    nextLi.append(nextLink)
-
-    // ----
+    nextLi.addEventListener('click', (e) => {
+        e.preventDefault()
+        loadCards(sectionName, searchInput.value, page + 1 )
+    })
 
     ul.append(nextLi)
+    nextLi.append(nextLink)
+
     navPag.append(ul)
 
     return navPag
@@ -216,7 +240,7 @@ const loadDetail = async (section, id) => {
         localStorage.setItem(`${section}Detail`, JSON.stringify(dataSingle))
         window.location = `../views/${section}Detail.html`
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 

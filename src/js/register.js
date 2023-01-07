@@ -1,3 +1,10 @@
+// TOKEN VALIDATION
+const userLogged = localStorage.getItem('userLogged')
+
+if(userLogged) {
+    window.location = `../views/index.html`
+}
+
 // ENDPOINT REGISTER - AUTH API
 const auth_api_user_register = 'https://api-auth-moby.herokuapp.com/api/user/register'
 
@@ -156,7 +163,7 @@ const createUser = async (user) => {
         )
 
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 

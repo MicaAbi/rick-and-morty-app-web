@@ -1,3 +1,18 @@
+// TOKEN VALIDATION
+const userLogged = localStorage.getItem('userLogged')
+
+if(!userLogged) {
+    window.location = `../views/login.html`
+}
+
+// LOG OUT
+const logout = document.querySelector('.logout')
+
+logout.addEventListener('click', (e) => {
+    localStorage.removeItem('userLogged')
+    window.location = `../views/login.html`
+})
+
 // Endpoint characters
 const rym_api_character = (list) => `https://rickandmortyapi.com/api/character/${list}`
 

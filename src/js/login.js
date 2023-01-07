@@ -1,3 +1,10 @@
+// TOKEN VALIDATION
+const userLogged = localStorage.getItem('userLogged')
+
+if(userLogged) {
+    window.location = `../views/index.html`
+}
+
 // ENDPOINT LOGIN - AUTH API
 const auth_api_user_login = 'https://api-auth-moby.herokuapp.com/api/user/login'
 
@@ -83,18 +90,21 @@ const loginUser = async (user) => {
     
         const data = await res.json()
     
-        const { header, data : dataUser } = data
+        const { header } = data
         const { resultCode } = header
 
-        resultCode == 0 ? (
-            localStorage.setItem('userLogged', JSON.stringify(dataUser)),
-            loginForm.reset(),
+        if(resultCode == 0) {
+            const { data : dataUser } = data
+            const { token } = dataUser
+            localStorage.setItem('userLogged', JSON.stringify(token))
+            loginForm.reset()
             window.location = '../views/index.html'
-        ) : (
+        } else {
             loginError.textContent = 'Incorrect user or password'
-        )
+        }
+        
     } catch (error) {
-        console.log(error);
+        console.error(error);
     }
 }
 
@@ -122,6 +132,5 @@ loginForm.addEventListener('submit', (e) => {
         }
 
         loginUser(userToAuthenticate)
-        console.log(validations);
     }
 })
